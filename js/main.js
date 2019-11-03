@@ -16,9 +16,19 @@ var GameState = {
 
         this.background = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'background');
         this.background.anchor.setTo(0.5);
+
         this.chicken = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'chicken');
         this.chicken.anchor.setTo(0.5);
         this.chicken.scale.setTo(0.5);
+
+        this.cow = this.game.add.sprite(100, 150, 'cow');
+        this.cow.anchor.setTo(0.5);
+        this.cow.scale.setTo(0.7);
+
+        this.sheep = this.game.add.sprite(500, 160, 'sheep');
+        this.sheep.anchor.setTo(0.5);
+        this.sheep.scale.setTo(0.6);
+
     },
 
     update: function(){

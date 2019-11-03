@@ -18,35 +18,58 @@ var GameState = {
         this.background = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'background');
         this.background.anchor.setTo(0.5);
 
+        //ARROWS
+
         this.arrowLeft = this.game.add.sprite(50, 160, 'arrow');
         this.arrowLeft.anchor.setTo(0.5);
         this.arrowLeft.scale.setTo(0.18);
+        this.arrowLeft.customParams = {direction: -1};
+        this.arrowLeft.inputEnabled = true;
+        this.arrowLeft.input.pixelPerfectClick = true;
+        this.arrowLeft.events.onInputDown.add(this.switchAnimal, this);
 
         this.arrowRight = this.game.add.sprite(550, 160, 'arrow');
         this.arrowRight.anchor.setTo(0.5);
         this.arrowRight.scale.setTo(-0.18);
+        this.arrowRight.customParams = {direction: 1}; 
+        this.arrowRight.inputEnabled = true;
+        this.arrowRight.input.pixelPerfectClick = true;
+        this.arrowRight.events.onInputDown.add(this.switchAnimal, this);
 
-       // this.chicken = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'chicken');
-       // this.chicken.anchor.setTo(0.5);
-       // this.chicken.scale.setTo(0.5);
+        //ANIMALS
 
-       // this.cow = this.game.add.sprite(100, 150, 'cow');
-       // this.cow.anchor.setTo(0.5);
-       // this.cow.scale.setTo(0.7);
+        this.chicken = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'chicken');
+        this.chicken.anchor.setTo(0.5);
+        this.chicken.scale.setTo(0.5);
+        this.chicken.inputEnabled = true;
+        this.chicken.input.pixelPerfectClick = true;
+        this.chicken.events.onInputDown.add(this.animateAnimal, this);
 
-        this.sheep = this.game.add.sprite(500, 170, 'sheep');
-        this.sheep.anchor.setTo(0.5);
-        this.sheep.scale.setTo(0.6);
-        this.sheep.angle = -10;
+        //this.cow = this.game.add.sprite(100, 150, 'cow');
+        //this.cow.anchor.setTo(0.5);
+        //this.cow.scale.setTo(0.7);
+
+        //this.sheep = this.game.add.sprite(500, 170, 'sheep');
+        //this.sheep.anchor.setTo(0.5);
+        //this.sheep.scale.setTo(0.6);
+        //this.sheep.angle = -10;
 
     },
 
     update: function(){
-        this.sheep.angle--;
-        this.sheep.x--;
-        if(this.sheep.x < -100){
-            this.sheep.x = 700;
-        }
+       // this.sheep.angle--;
+       // this.sheep.x--;
+       // if(this.sheep.x < -100){
+       //     this.sheep.x = 700;
+       // }
+    },
+
+    switchAnimal: function(sprite, event){
+        console.log('move animal');
+    },
+
+    animateAnimal: function(sprite, event){
+        console.log('animate animal');
     }
 };
 

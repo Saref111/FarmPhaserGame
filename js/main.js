@@ -18,6 +18,41 @@ var GameState = {
         this.background = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'background');
         this.background.anchor.setTo(0.5);
 
+        //GROUP OF ANIMALS
+
+        var animalData = [
+            {key: 'pig', text: 'PIG'},
+            {key: 'cow', text: 'COW'},
+            {key: 'sheep', text: 'SHEEP'},
+            {key: 'chicken', text: 'CHICKEN'}
+        ];
+
+        this.animals = this.game.add.group();
+
+        var self = this;
+        var animal;
+
+        animalData.forEach(function(element){
+            animal = self.animals.create(-1000, self.game.world.centerY, element.key);
+            animal.anchor.setTo(0.5);
+
+            if(element.key == 'chicken'){
+                animal.scale.setTo(0.4);
+            }else if(element.key == 'cow'){
+                animal.scale.setTo(0.6);
+            }else if(element.key == 'sheep' || element.key == 'pig'){
+                animal.scale.setTo(0.5)
+            }
+
+            animal.customParams = {text: element.text};
+
+            animal.inputEnabled = true;
+            animal.input.pixelPerfectClick = true;
+            animal.events.onInputDown.add(self.animateAnimal, self);
+        });
+
+        this.currentAnimal = this.animals.next();
+        this.currentAnimal.position.set(this.game.world.centerX, this.game.world.centerY);
         //ARROWS
 
         this.arrowLeft = this.game.add.sprite(50, 160, 'arrow');
@@ -38,30 +73,16 @@ var GameState = {
 
         //ANIMALS
 
-        this.chicken = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'chicken');
+       /* this.chicken = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'chicken');
         this.chicken.anchor.setTo(0.5);
         this.chicken.scale.setTo(0.5);
         this.chicken.inputEnabled = true;
         this.chicken.input.pixelPerfectClick = true;
-        this.chicken.events.onInputDown.add(this.animateAnimal, this);
-
-        //this.cow = this.game.add.sprite(100, 150, 'cow');
-        //this.cow.anchor.setTo(0.5);
-        //this.cow.scale.setTo(0.7);
-
-        //this.sheep = this.game.add.sprite(500, 170, 'sheep');
-        //this.sheep.anchor.setTo(0.5);
-        //this.sheep.scale.setTo(0.6);
-        //this.sheep.angle = -10;
+        this.chicken.events.onInputDown.add(this.animateAnimal, this);*/
 
     },
 
     update: function(){
-       // this.sheep.angle--;
-       // this.sheep.x--;
-       // if(this.sheep.x < -100){
-       //     this.sheep.x = 700;
-       // }
     },
 
     switchAnimal: function(sprite, event){

@@ -25,14 +25,19 @@ var GameState = {
         this.cow.anchor.setTo(0.5);
         this.cow.scale.setTo(0.7);
 
-        this.sheep = this.game.add.sprite(500, 160, 'sheep');
+        this.sheep = this.game.add.sprite(500, 170, 'sheep');
         this.sheep.anchor.setTo(0.5);
         this.sheep.scale.setTo(0.6);
+        this.sheep.angle = -10;
 
     },
 
     update: function(){
-
+        this.sheep.angle--;
+        this.sheep.x--;
+        if(this.sheep.x < -100){
+            this.sheep.x = 700;
+        }
     }
 };
 

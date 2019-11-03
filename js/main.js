@@ -71,22 +71,27 @@ var GameState = {
         this.arrowRight.input.pixelPerfectClick = true;
         this.arrowRight.events.onInputDown.add(this.switchAnimal, this);
 
-        //ANIMALS
-
-       /* this.chicken = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'chicken');
-        this.chicken.anchor.setTo(0.5);
-        this.chicken.scale.setTo(0.5);
-        this.chicken.inputEnabled = true;
-        this.chicken.input.pixelPerfectClick = true;
-        this.chicken.events.onInputDown.add(this.animateAnimal, this);*/
-
+       
     },
 
     update: function(){
     },
 
     switchAnimal: function(sprite, event){
-        console.log('move animal');
+        var newAnimal;
+        var endX;
+
+        if(sprite.customParams.direction > 0){
+            newAnimal = this.animals.next();
+            endX = 600 + this.currentAnimal.width/2;
+        }else {
+            newAnimal = this.animals.previous();
+            endX = -this.currentAnimal.width/2;
+        }
+
+        this.currentAnimal.x = endX;
+        newAnimal.x = this.game.world.centerX;
+        this.currentAnimal = newAnimal;
     },
 
     animateAnimal: function(sprite, event){

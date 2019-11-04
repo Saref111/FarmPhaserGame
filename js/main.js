@@ -83,14 +83,23 @@ var GameState = {
 
         if(sprite.customParams.direction > 0){
             newAnimal = this.animals.next();
+            newAnimal.x = -newAnimal.width/2;
             endX = 600 + this.currentAnimal.width/2;
         }else {
             newAnimal = this.animals.previous();
+            newAnimal.x = 600 + newAnimal.width/2;
             endX = -this.currentAnimal.width/2;
         }
 
-        this.currentAnimal.x = endX;
-        newAnimal.x = this.game.world.centerX;
+        
+        var newAnimalMovement = this.game.add.tween(newAnimal);
+        newAnimalMovement.to({x: game.world.centerX}, 1000);
+        newAnimalMovement.start();
+
+        var currentAnimalMovement = this.game.add.tween(this.currentAnimal);
+        currentAnimalMovement.to({x: endX}, 1000);
+        currentAnimalMovement.start();
+
         this.currentAnimal = newAnimal;
     },
 

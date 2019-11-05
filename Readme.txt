@@ -1,0 +1,1 @@
+This game is a study project. All assets was taken from free sources and have free to use licenses. The game needs a server to be open. Thank you.

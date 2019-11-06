@@ -3,9 +3,9 @@ var game = new Phaser.Game(600, 300, Phaser.AUTO);
 var GameState = {
     preload: function(){
         this.load.image('background', 'assets/img/bc.png');
-        this.load.image('pig', 'assets/img/pig.png');
+        this.load.spritesheet('pig', 'assets/img/pig-sprite.png', 285, 300, 3);
         this.load.spritesheet('cow', 'assets/img/cow-sprite.png', 264, 299, 3);
-        this.load.image('sheep', 'assets/img/sheep.png');
+        this.load.spritesheet('sheep', 'assets/img/sheep-sprite.png', 288, 300, 3);
         this.load.spritesheet('chicken', 'assets/img/chicken-sprite.png', 240, 299, 3);
         this.load.image('arrow', 'assets/img/arrow.png');    
     },

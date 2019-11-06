@@ -3,10 +3,10 @@ var game = new Phaser.Game(600, 300, Phaser.AUTO);
 var GameState = {
     preload: function(){
         this.load.image('background', 'assets/img/bc.png');
-        this.load.image('pig', 'assets/img/pig.png');
-        this.load.image('cow', 'assets/img/cow.png');
-        this.load.image('sheep', 'assets/img/sheep.png');
-        this.load.image('chicken', 'assets/img/chicken.png');
+        this.load.spritesheet('pig', 'assets/img/pig-sprite.png', 285, 300, 3);
+        this.load.spritesheet('cow', 'assets/img/cow-sprite.png', 264, 299, 3);
+        this.load.spritesheet('sheep', 'assets/img/sheep-sprite.png', 288, 300, 3);
+        this.load.spritesheet('chicken', 'assets/img/chicken-sprite.png', 240, 299, 3);
         this.load.image('arrow', 'assets/img/arrow.png');    
     },
 
@@ -33,8 +33,10 @@ var GameState = {
         var animal;
 
         animalData.forEach(function(element){
-            animal = self.animals.create(-1000, self.game.world.centerY, element.key);
+            animal = self.animals.create(-1000, self.game.world.centerY, element.key, 0);
             animal.anchor.setTo(0.5);
+
+            animal.animations.add('animate', [0, 1, 2, 1, 0], 3, false);
 
             if(element.key == 'chicken'){
                 animal.scale.setTo(0.4);
@@ -113,7 +115,7 @@ var GameState = {
     },
 
     animateAnimal: function(sprite, event){
-        console.log('animate animal');
+        sprite.play('animate');
     }
 };
 

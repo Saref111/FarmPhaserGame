@@ -4,7 +4,7 @@ var GameState = {
     preload: function(){
         this.load.image('background', 'assets/img/bc.png');
         this.load.image('pig', 'assets/img/pig.png');
-        this.load.image('cow', 'assets/img/cow.png');
+        this.load.spritesheet('cow', 'assets/img/cow-sprite.png', 264, 299, 3);
         this.load.image('sheep', 'assets/img/sheep.png');
         this.load.spritesheet('chicken', 'assets/img/chicken-sprite.png', 240, 299, 3);
         this.load.image('arrow', 'assets/img/arrow.png');    
